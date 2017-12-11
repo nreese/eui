@@ -127,6 +127,9 @@ import { ToastExample }
 import { TooltipExample }
   from '../../views/tooltip/tooltip_example';
 
+  import { TutorialExample }
+  from '../../views/tutorial/tutorial_example';
+
 
 // Sandboxes
 
@@ -206,6 +209,7 @@ const components = [
   TitleExample,
   ToastExample,
   TooltipExample,
+  TutorialExample,
 ].map(example => createExample(example));
 
 const sandboxes = [{

@@ -28,6 +28,8 @@
     "jquery": "3.2.1",
     "keymirror": "0.1.1",
     "lodash": "4.17.4",
+    "markdown-it": "8.3.2",
+    "mustache": "2.3.0",
     "prop-types": "15.6.0",
     "react": "16.0.0",
     "react-ace": "5.5.0",

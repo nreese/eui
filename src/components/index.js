@@ -208,6 +208,10 @@ export {
 } from './tooltip';
 
 export {
+  EuiTutorial
+} from './tutorial';
+
+export {
   EuiTitle,
 } from './title';
 
