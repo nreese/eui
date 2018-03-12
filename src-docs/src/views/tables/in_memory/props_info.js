@@ -74,7 +74,7 @@ export const propsInfo = {
         defaultQuery: {
           description: 'Sets the default query of the search bar',
           required: false,
-          type: { name: '#Query' }
+          type: { name: 'string | #Query' }
         },
         box: {
           description: 'Configures the search box of the search bar ',
