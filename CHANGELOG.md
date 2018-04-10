@@ -3,6 +3,7 @@
 - Tweaked sizing, weights, color, line-heights, and added more levels to `EuiTitle` and `EuiText` ([#627](https://github.com/elastic/eui/pull/627))
 - Add TypeScript type defitions for `EuiPortal`, `EuiText` and `EuiTitle` as well as the `calculatePopoverPosition` service ([#638](https://github.com/elastic/eui/pull/638))
 - Grayed out labels for `disabled` controls ([#648])(https://github.com/elastic/eui/pull/648)
+- Close `EuiComboBox` `singleSelection` options list when option is choosen ([#645](https://github.com/elastic/eui/pull/645))
 
 **Bug fixes**
 
