@@ -188,7 +188,6 @@ export class EuiComboBox extends Component {
     this.setState({
       activeOptionIndex: nextActiveOptionIndex,
     });
-    this.focusActiveOption();
   };
 
   hasActiveOption = () => {
@@ -196,7 +195,9 @@ export class EuiComboBox extends Component {
   };
 
   clearActiveOption = () => {
-    this.state.activeOptionIndex = undefined;
+    this.setState({
+      activeOptionIndex: undefined,
+    });
   };
 
   focusActiveOption = () => {
@@ -459,7 +460,10 @@ export class EuiComboBox extends Component {
     this.matchingOptions = matchingOptions;
 
     if (!matchingOptions.length) {
-      this.clearActiveOption();
+      // Prevent endless setState -> componentWillUpdate -> setState loop.
+      if (nextState.hasActiveOption) {
+        this.clearActiveOption();
+      }
     }
   }
 
