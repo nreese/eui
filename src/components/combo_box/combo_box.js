@@ -382,6 +382,8 @@ export class EuiComboBox extends Component {
   onComboBoxClick = () => {
     // When the user clicks anywhere on the box, enter the interaction state.
     this.searchInput.focus();
+    // If the user does this from a state in which an option has focus, then we need to clear it.
+    this.clearActiveOption();
   };
 
   onComboBoxFocus = (e) => {
