@@ -16,6 +16,11 @@
     pointer-events: none;
   }
 
+  .euiFormControlLayout__iconButton {
+    pointer-events: all;
+    top: $euiSizeM - 1px;
+  }
+
   .euiFormControlLayout__clear {
     $clearSize: $euiSize;
 
