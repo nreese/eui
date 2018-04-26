@@ -40,11 +40,13 @@ export class EuiComboBox extends Component {
     renderOption: PropTypes.func,
     isInvalid: PropTypes.bool,
     rowHeight: PropTypes.number,
+    isClearable: PropTypes.bool,
   }
 
   static defaultProps = {
     options: [],
     selectedOptions: [],
+    isClearable: true,
   }
 
   constructor(props) {
@@ -501,6 +503,7 @@ export class EuiComboBox extends Component {
       async, // eslint-disable-line no-unused-vars
       isInvalid,
       rowHeight,
+      isClearable,
       ...rest
     } = this.props;
 
@@ -564,7 +567,7 @@ export class EuiComboBox extends Component {
           autoSizeInputRef={this.autoSizeInputRef}
           inputRef={this.searchInputRef}
           updatePosition={this.updateListPosition}
-          onClear={this.clearSelectedOptions}
+          onClear={isClearable && this.clearSelectedOptions}
           hasSelectedOptions={selectedOptions.length > 0}
         />
 
