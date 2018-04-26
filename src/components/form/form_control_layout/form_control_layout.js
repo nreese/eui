@@ -12,7 +12,7 @@ const iconSideToClassNameMap = {
 
 export const ICON_SIDES = Object.keys(iconSideToClassNameMap);
 
-export const EuiFormControlLayout = ({ children, icon, fullWidth, onClear, iconSide, isLoading, className }) => {
+export const EuiFormControlLayout = ({ children, icon, fullWidth, onClear, iconSide, isLoading, onIconClick, className }) => {
 
   const classes = classNames(
     'euiFormControlLayout',
@@ -31,16 +31,34 @@ export const EuiFormControlLayout = ({ children, icon, fullWidth, onClear, iconS
 
   let optionalIcon;
   if (icon) {
-    const iconClasses = classNames('euiFormControlLayout__icon', iconSideToClassNameMap[iconSide]);
-
-    optionalIcon = (
-      <EuiIcon
-        aria-hidden="true"
-        className={iconClasses}
-        type={icon}
-        size="m"
-      />
+    const iconClasses = classNames(
+      'euiFormControlLayout__icon',
+      iconSideToClassNameMap[iconSide],
+      {
+        'euiFormControlLayout__iconButton': onIconClick
+      },
     );
+
+    if (onIconClick) {
+      optionalIcon = (
+        <button
+          className={iconClasses}
+          onClick={onIconClick}
+        >
+          <EuiIcon
+            type={icon}
+          />
+        </button>
+      )
+    } else {
+      optionalIcon = (
+        <EuiIcon
+          aria-hidden="true"
+          className={iconClasses}
+          type={icon}
+        />
+      );
+    }
   }
 
   let optionalClear;
@@ -75,6 +93,7 @@ EuiFormControlLayout.propTypes = {
   iconSide: PropTypes.oneOf(ICON_SIDES),
   isLoading: PropTypes.bool,
   onClear: PropTypes.func,
+  onIconClick: PropTypes.func,
   className: PropTypes.string,
 };
 

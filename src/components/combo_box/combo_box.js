@@ -567,8 +567,11 @@ export class EuiComboBox extends Component {
           autoSizeInputRef={this.autoSizeInputRef}
           inputRef={this.searchInputRef}
           updatePosition={this.updateListPosition}
-          onClear={isClearable && this.clearSelectedOptions}
+          onClear={isClearable && this.clearSelectedOptions ? this.clearSelectedOptions : undefined}
           hasSelectedOptions={selectedOptions.length > 0}
+          isListOpen={isListOpen}
+          onOpen={this.openList}
+          onClose={this.closeList}
         />
 
         {optionsList}
