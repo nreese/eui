@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import FocusTrap from 'focus-trap-react';
 import hljs from 'highlight.js';
+import { AutoSizer, List } from 'react-virtualized';
 
 import {
   EuiButtonIcon,
@@ -84,6 +85,39 @@ export class EuiCodeBlockImpl extends Component {
     this.highlight();
   }
 
+  renderCodeSnippetChildren() {
+    if (!this.props.isVirtualized || typeof this.props.children !== 'string') {
+      return this.props.children;
+    }
+
+    const lines = this.props.children.replace(/\n$/, '').split('\n');
+    console.log("lines length", lines.length);
+
+    const screenWidth = window.innerWidth
+    || document.documentElement.clientWidth
+    || document.body.clientWidth;
+    const screenHeight = window.innerHeight
+    || document.documentElement.clientHeight
+    || document.body.clientHeight;
+
+    return (
+      <List
+        height={this.state.isFullScreen ? screenHeight : 300}
+        width={this.state.isFullScreen ? screenWidth : 900}
+        rowHeight={24}
+        rowCount={lines.length}
+        overscanRowCount={10}
+        rowRenderer={({ index }) => {
+          console.log(`index: ${index}`);
+          return `${index}: ${lines[index]}\n`;
+        }}
+        onRowsRendered={(args) => {
+          console.log(`onRowsRendered`, args);
+        }}
+      />
+    );
+  }
+
   render() {
     const {
       inline,
@@ -94,6 +128,7 @@ export class EuiCodeBlockImpl extends Component {
       overflowHeight,
       paddingSize,
       transparentBackground,
+      isVirtualized,
       ...otherProps
     } = this.props;
 
@@ -122,7 +157,7 @@ export class EuiCodeBlockImpl extends Component {
         className={codeClasses}
         {...otherProps}
       >
-        {children}
+        {this.renderCodeSnippetChildren()}
       </code>
     );
 
@@ -183,7 +218,7 @@ export class EuiCodeBlockImpl extends Component {
                   tabIndex={0}
                   onKeyDown={this.onKeyDown}
                 >
-                  {children}
+                  {this.renderCodeSnippetChildren()}
                 </code>
               </pre>
 

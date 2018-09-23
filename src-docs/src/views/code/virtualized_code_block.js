@@ -16,7 +16,14 @@ function myFunc${i} {
 
 export default () => (
   <div>
-    <EuiCodeBlock language="js" fontSize="l" paddingSize="s" color="dark" overflowHeight={300}>
+    <EuiCodeBlock
+      language="js"
+      fontSize="l"
+      paddingSize="s"
+      color="dark"
+      overflowHeight={300}
+      isVirtualized={true}
+    >
       {jsCode}
     </EuiCodeBlock>
   </div>
