@@ -3,6 +3,10 @@ import React from 'react';
 import { renderToHtml } from '../../services';
 
 import {
+  Link,
+} from 'react-router';
+
+import {
   GuideSectionTypes,
 } from '../../components';
 
@@ -18,6 +22,10 @@ const codeHtml = renderToHtml(Code);
 import CodeBlock from './code_block';
 const codeBlockSource = require('!!raw-loader!./code_block');
 const codeBlockHtml = renderToHtml(CodeBlock);
+
+import VirtualizedCodeBlock from './virtualized_code_block';
+const virtualizedCodeBlockSource = require('!!raw-loader!./virtualized_code_block');
+const virtualizedCodeBlockHtml = renderToHtml(VirtualizedCodeBlock);
 
 export const CodeExample = {
   title: 'Code',
@@ -53,5 +61,23 @@ export const CodeExample = {
     ),
     props: { EuiCodeBlockImpl },
     demo: <CodeBlock />,
+  }, {
+    title: 'Virtualized CodeBlock',
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: virtualizedCodeBlockSource,
+    }, {
+      type: GuideSectionTypes.HTML,
+      code: virtualizedCodeBlockHtml,
+    }],
+    text: (
+      <p>
+        Use TBD prop to configure <EuiCode>EuiCodeBlock</EuiCode> to use
+        {' '}<Link to="https://github.com/bvaughn/react-virtualized">react-virtualized</Link>{' '}
+        to only render the visible code section to be super fast no matter lenght of the code block.
+      </p>
+    ),
+    props: { EuiCodeBlockImpl },
+    demo: <VirtualizedCodeBlock />,
   }],
 };
