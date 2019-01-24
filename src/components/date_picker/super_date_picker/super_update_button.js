@@ -6,16 +6,20 @@ import { EuiToolTip } from '../../tool_tip';
 
 export class EuiSuperUpdateButton extends Component {
   static propTypes = {
-    hasChanged: PropTypes.bool,
+    isRefresh: PropTypes.bool,
     isLoading: PropTypes.bool,
-    isInvalid: PropTypes.bool,
-    onApply: PropTypes.func.isRequired,
+    isDisabled: PropTypes.bool,
+    onClick: PropTypes.func.isRequired,
+    /**
+     * Passes props to `EuiToolTip`
+     */
+    toolTipProps: PropTypes.object,
   }
 
   static defaultProps = {
-    hasChanged: false,
+    isRefresh: false,
     isLoading: false,
-    isInvalid: false,
+    isDisabled: false,
   }
 
   componentWillUnmount() {
@@ -27,7 +31,7 @@ export class EuiSuperUpdateButton extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.hasChanged && !this.props.isInvalid && !this.props.isLoading) {
+    if (this.props.isRefresh && !this.props.isDisabled && !this.props.isLoading) {
       this.showTooltip();
       this.tooltipTimeout = setTimeout(() => {
         this.hideTooltip();
@@ -53,22 +57,22 @@ export class EuiSuperUpdateButton extends Component {
 
   render() {
     const {
-      hasChanged,
+      isRefresh,
       isLoading,
-      isInvalid,
-      onApply,
+      isDisabled,
+      onClick,
       ...rest
     } = this.props;
 
     let buttonText = 'Refresh';
-    if (hasChanged || isLoading) {
+    if (isRefresh || isLoading) {
       buttonText = isLoading ? 'Updating' : 'Update';
     }
 
     let tooltipContent;
-    if (isInvalid) {
-      tooltipContent = 'Can\'t update, values are invalid';
-    } else if (hasChanged && !isLoading) {
+    if (isDisabled) {
+      tooltipContent = 'Cannot update';
+    } else if (isRefresh && !isLoading) {
       tooltipContent = 'Click to apply';
     }
 
@@ -80,12 +84,12 @@ export class EuiSuperUpdateButton extends Component {
       >
         <EuiButton
           className="euiSuperDatePicker__updateButton"
-          color={hasChanged || isLoading ? 'secondary' : 'primary'}
+          color={isRefresh || isLoading ? 'secondary' : 'primary'}
           fill
-          iconType={hasChanged || isLoading ? 'kqlFunction' : 'refresh'}
+          iconType={isRefresh || isLoading ? 'kqlFunction' : 'refresh'}
           textProps={{ className: 'euiSuperDatePicker__updateButtonText' }}
-          disabled={isInvalid}
-          onClick={onApply}
+          isDisabled={isDisabled}
+          onClick={onClick}
           isLoading={isLoading}
           {...rest}
         >

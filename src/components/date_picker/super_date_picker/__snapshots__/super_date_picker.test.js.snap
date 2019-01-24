@@ -108,10 +108,10 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
   >
     <EuiSuperUpdateButton
       data-test-subj="superDatePickerApplyTimeButton"
-      hasChanged={false}
-      isInvalid={false}
+      isDisabled={false}
       isLoading={false}
-      onApply={[Function]}
+      isRefresh={false}
+      onClick={[Function]}
     />
   </EuiFlexItem>
 </EuiFlexGroup>
