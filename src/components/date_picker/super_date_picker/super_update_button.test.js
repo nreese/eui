@@ -19,10 +19,10 @@ describe('EuiSuperUpdateButton', () => {
       .toMatchSnapshot();
   });
 
-  test('isRefresh', () => {
+  test('needsUpdate', () => {
     const component = shallow(
       <EuiSuperUpdateButton
-        isRefresh
+        needsUpdate
         onClick={noop}
       />
     );

@@ -3,6 +3,7 @@
 exports[`EuiSuperDatePicker is rendered 1`] = `
 <EuiFlexGroup
   alignItems="stretch"
+  className="euiSuperDatePicker__flexWrapper"
   component="div"
   direction="row"
   gutterSize="s"
@@ -13,11 +14,6 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
   <EuiFlexItem
     component="div"
     grow={true}
-    style={
-      Object {
-        "maxWidth": 480,
-      }
-    }
   >
     <EuiFormControlLayout
       className="euiSuperDatePicker"
@@ -110,7 +106,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
       data-test-subj="superDatePickerApplyTimeButton"
       isDisabled={false}
       isLoading={false}
-      isRefresh={false}
+      needsUpdate={false}
       onClick={[Function]}
     />
   </EuiFlexItem>
